@@ -1,0 +1,15 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * 	Main module file for the autofill module for Nojoshmo
+ */
+
+/**
+ * Implementation of hook_init().
+ */
+function autofill_init() {
+	
+}
+
