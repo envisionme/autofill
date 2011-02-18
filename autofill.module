@@ -9,7 +9,21 @@
 /**
  * Implementation of hook_init().
  */
+ 
 function autofill_init() {
+   global $user;
+	 
+	 //The path to the mysite module
+  $path = drupal_get_path('module', 'autofill');
 	
+	//Add  the AutoFill plug-in file.
+	drupal_add_js($path.'/js/jquery.autofill.min.js');	
+		
+	//Add our custom JavaScript file.
+	drupal_add_js($path.'/js/autofill.js');	
 }
+
+
+
+
 
