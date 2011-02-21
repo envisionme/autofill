@@ -7,6 +7,16 @@
  */
 
 /**
+ * Implementation of hook_help() 
+ */ 
+ 
+function autofill_help() {
+	if ($path == 'admin/help#autofill') {
+		return t('Provide autocompletion to Drupal fields');
+	}	
+} 
+ 
+/**
  * Implementation of hook_init().
  */
  
@@ -17,13 +27,10 @@ function autofill_init() {
   $path = drupal_get_path('module', 'autofill');
 	
 	//Add  the AutoFill plug-in file.
-	drupal_add_js($path.'/js/jquery.autofill.min.js');	
+	drupal_add_js($path.'/js/jquery.autofill.js');	
 		
 	//Add our custom JavaScript file.
 	drupal_add_js($path.'/js/autofill.js');	
+	
+	
 }
-
-
-
-
-
