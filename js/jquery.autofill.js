@@ -18,7 +18,7 @@
 			return this.each(function(){
 				var obj=$(this);
 				var value = obj.val();
-				var pfield = (obj.attr('type')=='password');
+				//var pfield = (obj.attr('type')=='password');
 				var p_obj = false;
 				/*if(pfield){
 					obj.hide();
