@@ -10,7 +10,7 @@
 		var defaults={
 			value:'First Name',
 			prePopulate:'',
-			defaultTextColor:"#666",
+			defaultTextColor:"#ccc",
 			activeTextColor:"#333"};
 			
 			
@@ -18,16 +18,15 @@
 			return this.each(function(){
 				var obj=$(this);
 				var value = obj.val();
-				//var pfield = (obj.attr('type')=='password');
+				var pfield = (obj.attr('type')=='password');
 				var p_obj = false;
-				/*if(pfield){
+				if(pfield){
 					obj.hide();
 					obj.after('<input type="text" id="'+this.id+'_autofill" class="'+$(this).attr('class')+'" />');
 					p_obj = obj;
 					obj = obj.next();
-				} */
+				}
 				if(document.activeElement != obj[0]) {
-					console.log(value);
 					if (obj.val() === '') {
 						obj.css({color:options.defaultTextColor}).val(options.value);					
 					}
