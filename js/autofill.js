@@ -1,13 +1,5 @@
 Drupal.behaviors.autofill = function(context) {
 	// Basic Info
-	$('#edit-field-name-0-value').autofill( {
-		value: 'e.g. Tom or Sally',
-	});
-
-	$('#edit-field-app-last-name-0-value').autofill( {
-		value: 'Lee or Williams or Smith',
-	});
-	
 	$('#edit-field-about-me-0-value').autofill( {
 		value: 'e.g. General information about who you are, where you came from, and where you are going.',
 	});
@@ -121,7 +113,7 @@ Drupal.behaviors.autofill = function(context) {
 	
 	// Links
 	$('#edit-field-homepage-0-url').autofill( {
-		value: 'e.g. http://www.example.com',	
+		value: 'e.g. http://www.examplesite.com',	
 		prePopulate: 'http://'
 	});
 	
