@@ -1,11 +1,11 @@
 Drupal.behaviors.autofill = function(context) {
 	// Basic Info
 	$('#edit-field-name-0-value').autofill( {
-		value: 'e.g. Name',
+		value: 'e.g. Paul or Jean',
 	});
 
 	$('#edit-field-name-0-value	').autofill( {
-		value: 'Last name',
+		value: 'Lee or Williams or Smith',
 	});
 	
 	$('#edit-field-about-me-0-value').autofill( {
