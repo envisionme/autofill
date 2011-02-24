@@ -1,4 +1,10 @@
 Drupal.behaviors.autofill = function(context) {
+   
+	 //Invite friend
+	$('#edit-email').autofill( {
+		value: 'e.g. friend@example.com',
+	}); 
+	 
 	// Basic Info
 	$('#edit-field-about-me-0-value').autofill( {
 		value: 'e.g. General information about who you are, where you came from, and where you are going.',
