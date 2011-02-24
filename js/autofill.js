@@ -2,7 +2,7 @@ Drupal.behaviors.autofill = function(context) {
    
 	 //Invite friend
 	$('#edit-email').autofill( {
-		value: 'e.g. friend@example.com',
+		value: 'friend@example.com',
 	}); 
 	 
 	// Basic Info
