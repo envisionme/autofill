@@ -1,0 +1,12 @@
+A Drupal module with some node addons. Theses include the following:
+
+Autofill Permission
+-------------------------------
+Allow's admin user to get the correct ID values from a form text field using a program like firebug ect. go to the autofill setting page and fill in the correct fields and safe them.
+
+
+Other
+-----------
+This module allows the admin user to fill in the setting page form and safe the information in the system.
+
+But if the admin user don't want to use this method there is a sample.js file that could be safe to anything user would like and use the code that is in the sample.js file
