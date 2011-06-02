@@ -9,27 +9,26 @@
 /**
  * Implementation of hook_help() 
  */ 
- 
+
 function autofill_help() {
-	if ($path == 'admin/help#autofill') {
-		return t('Provide autocompletion to Drupal fields');
-	}	
-} 
- 
+  if ($path == 'admin/help#autofill') {
+    return t('Provide autocompletion to Drupal fields');
+  }
+}
+
 /**
  * Implementation of hook_init().
- */ 
+ */
 function autofill_init() {
-   global $user;
-	 
-	 //The path to the mysite module
+  global $user;
+  //The path to the mysite module
   $path = drupal_get_path('module', 'autofill');
-	
-	//Add  the AutoFill plug-in file.
-	drupal_add_js($path.'/js/jquery.autofill.js');	
-		
-	//Add our custom JavaScript file.
-	drupal_add_js($path.'/js/autofill.js');		
+
+  //Add  the AutoFill plug-in file.
+  drupal_add_js($path . '/js/jquery.autofill.js');
+
+  //Add our custom JavaScript file.
+  drupal_add_js($path . '/js/autofill.js');
 }
 
 /**
@@ -44,54 +43,53 @@ function autofill_perm() {
  */
 function autofill_menu() {
   $items = array();
- 	$path = drupal_get_path('module', 'autofill');	
-	 
-	$items[$path.'/js/autofill.js'] = array(
+  $path = drupal_get_path('module', 'autofill');
+   
+  $items[$path . '/js/autofill.js'] = array(
     'title' => 'Autofill JS',
     'description' => 'Add id and values to Autofill.',
     'page callback' => 'autofill_js',
-		'type' => MENU_CALLBACK,
-		'access arguments' => array(true),		
+    'type' => MENU_CALLBACK,
+    'access arguments' => array(true),
   );
-	
-	$items['admin/settings/autofill/autofill_js'] = array(
+  
+  $items['admin/settings/autofill/autofill_js'] = array(
     'title' => 'Autofill Settings Page',
     'description' => 'Configure the autofill.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('autofill_form'),
     'access arguments' => array('administer autofill'),
-    'file' => 'autofill.admin.inc',    
-	);	
-	return $items;
+    'file' => 'autofill.admin.inc',
+  );
+  return $items;
 }
 
 /**
  * Implementation of hook_form
  */
- 
-function autofill_js() {			
-	$output = ' ';
-		
-	$output .= 'Drupal.behaviors.autofill = function(context){ ';
-	
-	$default_color = variable_get('autofill_colour_default', null);
-	$active_color = variable_get('autofill_colour_active', null);
-	
-	for($delta = 0; $delta <= 2; $delta ++) {	
-		$id = variable_get('autofill_'.$delta.'_id', null);
-		$val = variable_get('autofill_'.$delta.'_value', null);
-		$pre =variable_get('autofill_'.$delta.'_pre', null);	
-	
-		$output .=	'$("'.$id.'").autofill( {
-			value: "'.$val.'",
-			prePopulate: "'.$pre.'",
-			defaultTextColor: "'.$default_color.'",
-			activeTextColor: "'.$active_color.'",
-		});';  	 
-	}
-	$output .= '}';
-	
-	header('Content-type: text/javascript;');		
-	echo $output;
-	exit();
+
+function autofill_js() {
+  $output = ' ';
+
+  $output .= 'Drupal.behaviors.autofill = function(context){ ';
+  $default_color = variable_get('autofill_colour_default', NULL);
+  $active_color = variable_get('autofill_colour_active', NULL);
+  
+  for ($delta = 0; $delta <= 2; $delta++) {
+    $id = variable_get('autofill_' . $delta . '_id', NULL);
+    $val = variable_get('autofill_' . $delta . '_value', NULL);
+    $pre =variable_get('autofill_' . $delta . '_pre', NULL);
+  
+    $output .= '$("' . $id . '").autofill( {
+      value: "' . $val . '",
+      prePopulate: "' . $pre . '",
+      defaultTextColor: "' . $default_color . '",
+      activeTextColor: "' . $active_color . '",
+    });';
+  }
+  $output .= '}';
+  
+  header('Content-type: text/javascript;');
+  echo $output;
+  exit();
 }
