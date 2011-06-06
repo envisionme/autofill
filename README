@@ -1,12 +1,51 @@
-A Drupal module with some node addons. Theses include the following:
+Description
 
-Autofill Permission
--------------------------------
-Allow's admin user to get the correct ID values from a form text field using a program like firebug ect. go to the autofill setting page and fill in the correct fields and safe them.
+A Drupal module with some node add-ons. Theses include the following:
+A simple module to add to your site that lets you specify a default value to be cleared on click, and to reappear when the input is left empty 
+
+This module enables admin user to pre-populate text, and textarea form fields with values to describe users how to fill in the form the way the admin users would like it to be.
+Example, link text field: you could add -> http:// 
+
+Admin user will be enable to fill in the setting page form (admin/settings/autofill) and save the information in the system.
+Use a web tool like Firebug etc. to access the source code and then you'll be able to copy the textfield/textarea class or ID and paste it into the field that says ID
 
 
-Other
------------
-This module allows the admin user to fill in the setting page form and safe the information in the system.
+But if the admin user don't want to use this method there is a sample.js file that could be saved to anything tha admin user would like.
 
-But if the admin user don't want to use this method there is a sample.js file that could be safe to anything user would like and use the code that is in the sample.js file
+Call the plugin like so:
+
+Drupal.behaviors.autofill = function(context) {
+
+ $("#edit-field-test-0-value").autofill( {
+value: "Hallo world",
+prePopulate: "Hallo Piet",
+defaultTextColor: "#666666",
+activeTextColor: "#000000",
+
+Installation
+
+Upload the module
+Enable this module
+Go into Admin > Settings > Autofill
+
+Instructions
+
+On the Autofill Settings Page you see the following fields:
+
+Default text color:
+Admin user will be able to choose a color to be used for text color before anything is typed into field.
+This color will be used to style the description that the admin user would like to describe how the users should populate their field.
+This will dissapear when users click in the text field.
+
+Active text Color:
+Admin user can choose what color the text should be when users populate their fields.
+
+Fill in autofill fields:
+
+Id: The ID/class name of the textfield or textarea you want to autofill (eg. #email-text-area)
+Value: The description to describe what the field should be populate with. eg. Please fill in your email address
+Pre Populate value: Force users to populate the field with the correct values, eg. user http://  then user will be able to add the www.site.com etc.
+Sponsors
+
+This module was kindly sponsored by NoJoShmo.com and is maintained by Rui Ferreira.
+This module is based on the work done by mmangino jQuery-AutoFill
