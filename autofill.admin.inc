@@ -67,14 +67,31 @@ function autofill_form() {
  * Settings form validate handler to ensure a hexadecimal color value.
  */
 function autofill_settings_form_validate($form, &$form_state) {
+  // Validate default text color field
   if (!empty($form_state['values']['autofill_colour_default'])) {
     if (!preg_match('/^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/', $form_state['values']['autofill_colour_default'])) {
       form_error($form, t('Text color must be a hexadecimal color value like %color.', array('%color' => '#ccc')));
     }
   }
+  // Validate text color field
   if (!empty($form_state['values']['autofill_colour_active'])) {
     if (!preg_match('/^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/', $form_state['values']['autofill_colour_active'])) {
       form_error($form, t('Text color must be a hexadecimal color value like %color.', array('%color' => '#333')));
+    }
+  }
+  
+  // Validate ID field
+  $fields = $form_state['values']['fields'];
+  //dpm(substr($fields[$delta]['id'],0,1));  
+  if (!empty($fields))
+  foreach ($fields as $delta => $field) {
+    // check if ID field uses the correct CSS ID or class identifier
+    if (!empty($fields[$delta]['id']) && substr($fields[$delta]['id'],0,1) != '#' && substr($fields[$delta]['id'],0,1) != '.') {
+      form_error($form, t('%field-id doesn\'t contain a CSS class or ID identifier (e.g. <em>#specific</em> for <em>id="specific"</em> and <em>.general</em> for <em>class="general"</em>).', array('%field-id' => $fields[$delta]['id'])));
+    }
+    // check if either value or pre populate value is specified
+    if (!empty($fields[$delta]['id']) && empty($fields[$delta]['value']) && empty($fields[$delta]['pre'])) {
+      form_error($form, t('%field-id field must contain either a <em>Empty value</em> or <em>Pre-populate value</em>.', array('%field-id' => $fields[$delta]['id'])));
     }
   }
 }
@@ -104,21 +121,21 @@ function _autofill_textfield_combo($delta, $id, $value, $pre) {
   $form['markup1'] = array('#value' => '<div class="autofill-row">');
   $form['id'] = array(
     '#type' => 'textfield',
-    '#title' => t('ID'),
+    '#title' => t('ID/class'),
     '#default_value' => $id,
     '#attributes' => array('class' => 'field_spacing'),
     '#parents' => array('fields', $delta, 'id'),
   );
   $form['value'] = array(
     '#type' => 'textfield',
-    '#title' => t('Value'),
+    '#title' => t('Empty value'),
     '#default_value' => $value,
     '#attributes' => array('class' => 'field_spacing'),
     '#parents' => array('fields', $delta, 'value'),
   );
   $form['pre'] = array(
     '#type' => 'textfield',
-    '#title' => t('Pre populate Value'),
+    '#title' => t('Pre-populate value'),
     '#default_value' => $pre,
     '#attributes' => array('class' => 'field_spacing'),
     '#parents' => array('fields', $delta, 'pre'),
