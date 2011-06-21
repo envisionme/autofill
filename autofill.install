@@ -1,6 +1,11 @@
 <?php
 /**
- * Implementation of hook_uninstall()
+ * @file
+ * Installation file for the Autofill module.
+ */
+
+/**
+ * Implementation of hook_uninstall().
  */
 function autofill_uninstall() {
   variable_del('autofill_colour_default');

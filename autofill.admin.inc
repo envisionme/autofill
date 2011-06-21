@@ -1,16 +1,16 @@
 <?php
 /**
-*
-*@file
-*Adminstrative page callbacks for AutoFill
-*
-*@ingroup AutoFil
-*
-*/
+ *
+ * @file
+ * Adminstrative page callbacks for Autofill
+ *
+ * @ingroup Autofill
+ *
+ */
 
 /*
-* Implementation of Autofil settings form
-*/
+ * Implementation of Autofill settings form.
+ */
 function autofill_form() {
   $path = drupal_get_path('module', 'autofill');
   drupal_add_css($path .'/autofill.css');
@@ -57,9 +57,9 @@ function autofill_form() {
     '#type' => 'submit',
     '#value' => t('Save configuration'),
     '#submit' => array('autofill_settings_form_submit'),
-   );
-   // add form validation
-   $form['#validate'] = array('autofill_settings_form_validate');
+  );
+  // add form validation
+  $form['#validate'] = array('autofill_settings_form_validate');
   return $form;
 }
 
@@ -86,7 +86,7 @@ function autofill_settings_form_validate($form, &$form_state) {
   if (!empty($fields))
   foreach ($fields as $delta => $field) {
     // check if ID field uses the correct CSS ID or class identifier
-    if (!empty($fields[$delta]['id']) && substr($fields[$delta]['id'],0,1) != '#' && substr($fields[$delta]['id'],0,1) != '.') {
+    if (!empty($fields[$delta]['id']) && $fields[$delta]['id'][0] != '#' && $fields[$delta]['id'][0] != '.') {
       form_error($form, t('%field-id doesn\'t contain a CSS class or ID identifier (e.g. <em>#specific</em> for <em>id="specific"</em> and <em>.general</em> for <em>class="general"</em>).', array('%field-id' => $fields[$delta]['id'])));
     }
     // check if either value or pre populate value is specified
@@ -103,7 +103,7 @@ function autofill_settings_form_submit($form, &$form_state) {
   variable_set('autofill_colour_default', $form_state['values']['autofill_colour_default']);
   variable_set('autofill_colour_active', $form_state['values']['autofill_colour_active']);
   $fields = $form_state['values']['fields'];
-  foreach($fields as $key => $field) {
+  foreach ($fields as $key => $field) {
     if (empty($field['id']))
       unset($fields[$key]);
   }
