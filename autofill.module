@@ -51,9 +51,9 @@ function autofill_menu() {
     'access arguments' => array(true),
   );
   
-  $items['admin/settings/autofill/autofill_js'] = array(
-    'title' => 'Autofill Settings Page',
-    'description' => 'Configure the autofill.',
+  $items['admin/settings/autofill'] = array(
+    'title' => 'Autofill',
+    'description' => 'Configure Autofill.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('autofill_form'),
     'access arguments' => array('administer autofill'),
