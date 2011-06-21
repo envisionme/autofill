@@ -1,6 +1,5 @@
-; $Id$
 name = "Autofill"
 description = "Autofill module for adding default text to Nojoshmo text fields"
-package = "NoJoShmo - Custom Modules"
+package = "User interface"
 version = "6.x-1.x-dev"
 core = 6.x

@@ -1,6 +1,4 @@
 <?php
-// $Id$
-
 /**
  * @file
  * 	Main module file for the autofill module for Nojoshmo
@@ -70,19 +68,14 @@ function autofill_menu() {
 
 function autofill_js() {
   $output = ' ';
-
   $output .= 'Drupal.behaviors.autofill = function(context){ ';
-  $default_color = variable_get('autofill_colour_default', NULL);
-  $active_color = variable_get('autofill_colour_active', NULL);
-  
-  for ($delta = 0; $delta <= 2; $delta++) {
-    $id = variable_get('autofill_' . $delta . '_id', NULL);
-    $val = variable_get('autofill_' . $delta . '_value', NULL);
-    $pre =variable_get('autofill_' . $delta . '_pre', NULL);
-  
-    $output .= '$("' . $id . '").autofill( {
-      value: "' . $val . '",
-      prePopulate: "' . $pre . '",
+  $default_color = variable_get('autofill_colour_default', '#ccc');
+  $active_color = variable_get('autofill_colour_active', '#333');
+  $fields = variable_get('autofill_id_field_combos', array());
+  foreach ($fields as $delta => $field) {
+    $output .= "\n".'$("' . $field['id'] . '").autofill( {
+      value: "' . $field['value'] . '",
+      prePopulate: "' . $field['pre'] . '",
       defaultTextColor: "' . $default_color . '",
       activeTextColor: "' . $active_color . '",
     });';
