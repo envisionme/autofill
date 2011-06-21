@@ -58,7 +58,25 @@ function autofill_form() {
     '#value' => t('Save configuration'),
     '#submit' => array('autofill_settings_form_submit'),
    );
+   // add form validation
+   $form['#validate'] = array('autofill_settings_form_validate');
   return $form;
+}
+
+/**
+ * Settings form validate handler to ensure a hexadecimal color value.
+ */
+function autofill_settings_form_validate($form, &$form_state) {
+  if (!empty($form_state['values']['autofill_colour_default'])) {
+    if (!preg_match('/^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/', $form_state['values']['autofill_colour_default'])) {
+      form_error($form, t('Text color must be a hexadecimal color value like %color.', array('%color' => '#ccc')));
+    }
+  }
+  if (!empty($form_state['values']['autofill_colour_active'])) {
+    if (!preg_match('/^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/', $form_state['values']['autofill_colour_active'])) {
+      form_error($form, t('Text color must be a hexadecimal color value like %color.', array('%color' => '#333')));
+    }
+  }
 }
 
 /**
