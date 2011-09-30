@@ -34,7 +34,6 @@ function autofill_init() {
     // get fields
     $fields_pre = array(array('id' => '#edit-info', 'value' => 'eg. Add title here', 'pre' => 'Hallo world'));
     variable_set('autofill_id_field_combos', $fields_pre );
-    $fields = variable_get('autofill_id_field_combos', array());
   }
 }
 
