@@ -27,6 +27,15 @@ function autofill_init() {
 
   //Add our custom JavaScript file.
   drupal_add_js($path . '/js/autofill.js');
+
+  $fields = variable_get('autofill_id_field_combos', array());
+
+  if ( empty($fields) ) {
+    // get fields
+    $fields_pre = array(array('id' => '#edit-info', 'value' => 'eg. Add title here', 'pre' => 'Hallo world'));
+    variable_set('autofill_id_field_combos', $fields_pre );
+    $fields = variable_get('autofill_id_field_combos', array());
+  }
 }
 
 /**
@@ -50,7 +59,7 @@ function autofill_menu() {
     'type' => MENU_CALLBACK,
     'access arguments' => array(true),
   );
-  
+
   $items['admin/settings/autofill'] = array(
     'title' => 'Autofill',
     'description' => 'Configure Autofill.',
@@ -81,7 +90,7 @@ function autofill_js() {
     });';
   }
   $output .= '}';
-  
+
   header('Content-type: text/javascript;');
   echo $output;
   exit();
