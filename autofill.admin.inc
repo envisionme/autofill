@@ -104,8 +104,9 @@ function autofill_settings_form_submit($form, &$form_state) {
   variable_set('autofill_colour_active', $form_state['values']['autofill_colour_active']);
   $fields = $form_state['values']['fields'];
   foreach ($fields as $key => $field) {
-    if (empty($field['id']))
+    if (empty($field['id'])) {
       unset($fields[$key]);
+	}  
   }
   variable_set('autofill_id_field_combos', $fields);
   drupal_set_message(t('Your changes have been saved.'));

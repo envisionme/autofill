@@ -21,15 +21,20 @@ function autofill_init() {
   global $user;
   //The path to the mysite module
   $path = drupal_get_path('module', 'autofill');
-
-  //Add  the AutoFill plug-in file.
-  drupal_add_js($path . '/js/jquery.autofill.js');
+  $path_lab = drupal_get_path('module', 'libraries');
 
   //Add our custom JavaScript file.
   drupal_add_js($path . '/js/autofill.js');
 
-  $fields = variable_get('autofill_id_field_combos', array());
-
+  //Get the path for the folder created in the libraries folder
+  $name = 'autofill';
+  if ($path = libraries_get_path($name)) {
+  //Add  the AutoFill plug-in file.
+  //This is the path to the third party file that I used to create the autofill functionality
+	drupal_add_js($path . '/jquery.autofill.js');
+  }
+  
+  $fields = variable_get('autofill_id_field_combos', array());  
   if ( empty($fields) ) {
     // get fields
     $fields_pre = array(array('id' => '#edit-info', 'value' => 'eg. Add title here', 'pre' => 'Hallo world'));
