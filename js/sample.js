@@ -19,4 +19,5 @@ Drupal.behaviors.autofill = function(context) {
 			defaultTextColor: "#666666",
 			activeTextColor: "#000000",
 	});
+	
 }

@@ -2,5 +2,4 @@ name = "Autofill"
 description = "Autofill module for adding default text to Nojoshmo text fields"
 package = "User interface"
 dependencies[] = libraries
-version = "6.x-1.x-dev"
 core = 6.x
