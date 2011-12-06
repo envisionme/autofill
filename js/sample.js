@@ -19,5 +19,4 @@ $("#any_field_ID").autofill( {
  defaultTextColor: "#666666",
  activeTextColor: "#000000",
 });
-
 }

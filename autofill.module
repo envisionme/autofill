@@ -1,5 +1,5 @@
 <?php
-/* @file
+/** @file
  * Main module file for the autofill module for Nojoshmo
  */
 
@@ -14,7 +14,7 @@ function autofill_help() {
 }
 
 /**
- *Implements hook_init().
+ * Implements hook_init().
  */
 function autofill_init() {
   global $user;
@@ -28,14 +28,14 @@ function autofill_init() {
   // Get the path for the folder created in the libraries folder.
   $name = 'autofill';
   if ($path = libraries_get_path($name)) {
-  // Add  the AutoFill plug-in file.
-  // Path to third party file.
-	drupal_add_js($path . '/jquery.autofill.js');
+    // Add  the AutoFill plug-in file.
+    // Path to third party file.
+    drupal_add_js($path . '/jquery.autofill.js');
   }
 
   $fields = variable_get('autofill_id_field_combos', array());
-  if ( empty($fields) ) {
-    // get fields
+  if (empty($fields)) {
+    // Get fields.
     $fields_pre = array(array('id' => '#edit-info', 'value' => 'eg. Add title here', 'pre' => 'Hallo world'));
     variable_set( 'autofill_id_field_combos', $fields_pre );
   }
