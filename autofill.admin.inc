@@ -1,19 +1,16 @@
 <?php
-/**
- *
- * @file
+/* @file
  * Adminstrative page callbacks for Autofill
  *
  * @ingroup Autofill
- *
  */
 
-/*
+/**
  * Implementation of Autofill settings form.
  */
 function autofill_form() {
   $path = drupal_get_path('module', 'autofill');
-  drupal_add_css($path .'/autofill.css');
+  drupal_add_css($path . '/autofill.css');
 
   $form = array();
 
@@ -32,7 +29,7 @@ function autofill_form() {
     '#attributes' => array('class' => 'field_spacing'),
     '#description' => t('Color of autofill fields when being edited'),
   );
-  
+
   $form['fields'] = array(
     '#type' => 'fieldset',
     '#title' => t('Fill in autofill fields'),
@@ -42,23 +39,23 @@ function autofill_form() {
     '#prefix' => '<div class="autofill-row">',
     '#suffix' => '</div">',
   );
-  // get fields
+  // Get fields.
   $fields = variable_get('autofill_id_field_combos', array());
   $count = 0;
   foreach ($fields as $delta => $field) {
     $form['fields'][] = _autofill_textfield_combo($delta, $field['id'], $field['value'], $field['pre']);
     $count = $delta;
   }
-  // default empty field as a last row
+  // Default empty field as a last row.
   $form['fields'][] = _autofill_textfield_combo($count+1, '', '', '');
-  
-  // use custom submit handler
+
+  // Use custom submit handler.
   $form['buttons']['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Save configuration'),
     '#submit' => array('autofill_settings_form_submit'),
   );
-  // add form validation
+  // Add form validation.
   $form['#validate'] = array('autofill_settings_form_validate');
   return $form;
 }
@@ -67,29 +64,27 @@ function autofill_form() {
  * Settings form validate handler to ensure a hexadecimal color value.
  */
 function autofill_settings_form_validate($form, &$form_state) {
-  // Validate default text color field
+  // Validate default text color field.
   if (!empty($form_state['values']['autofill_colour_default'])) {
     if (!preg_match('/^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/', $form_state['values']['autofill_colour_default'])) {
       form_error($form, t('Text color must be a hexadecimal color value like %color.', array('%color' => '#ccc')));
     }
   }
-  // Validate text color field
+  // Validate text color field.
   if (!empty($form_state['values']['autofill_colour_active'])) {
     if (!preg_match('/^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/', $form_state['values']['autofill_colour_active'])) {
       form_error($form, t('Text color must be a hexadecimal color value like %color.', array('%color' => '#333')));
     }
   }
-  
-  // Validate ID field
+  // Validate ID field.
   $fields = $form_state['values']['fields'];
-  //dpm(substr($fields[$delta]['id'],0,1));  
   if (!empty($fields))
   foreach ($fields as $delta => $field) {
-    // check if ID field uses the correct CSS ID or class identifier
+    // Check if ID field uses the correct CSS ID or class identifier.
     if (!empty($fields[$delta]['id']) && $fields[$delta]['id'][0] != '#' && $fields[$delta]['id'][0] != '.') {
-      form_error($form, t('%field-id doesn\'t contain a CSS class or ID identifier (e.g. <em>#specific</em> for <em>id="specific"</em> and <em>.general</em> for <em>class="general"</em>).', array('%field-id' => $fields[$delta]['id'])));
+      form_error($form, t("%field-id doesn\'t contain a CSS class or ID identifier (e.g. <em>#specific</em> for <em>id="specific"</em> and <em>.general</em> for <em>class="general"</em>).", array('%field-id' => $fields[$delta]['id'])));
     }
-    // check if either value or pre populate value is specified
+    // Check if either value or pre populate value is specified.
     if (!empty($fields[$delta]['id']) && empty($fields[$delta]['value']) && empty($fields[$delta]['pre'])) {
       form_error($form, t('%field-id field must contain either a <em>Empty value</em> or <em>Pre-populate value</em>.', array('%field-id' => $fields[$delta]['id'])));
     }
@@ -106,7 +101,7 @@ function autofill_settings_form_submit($form, &$form_state) {
   foreach ($fields as $key => $field) {
     if (empty($field['id'])) {
       unset($fields[$key]);
-	}  
+	}
   }
   variable_set('autofill_id_field_combos', $fields);
   drupal_set_message(t('Your changes have been saved.'));

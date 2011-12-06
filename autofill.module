@@ -1,11 +1,10 @@
 <?php
-/**
- * @file
- * 	Main module file for the autofill module for Nojoshmo
+/* @file
+ * Main module file for the autofill module for Nojoshmo
  */
 
 /**
- * Implementation of hook_help(). 
+ * Implements hook_help().
  */
 
 function autofill_help() {
@@ -15,42 +14,42 @@ function autofill_help() {
 }
 
 /**
- * Implementation of hook_init().
+ *Implements hook_init().
  */
 function autofill_init() {
   global $user;
-  //The path to the mysite module
+  // The path to the mysite module.
   $path = drupal_get_path('module', 'autofill');
   $path_lab = drupal_get_path('module', 'libraries');
 
-  //Add our custom JavaScript file.
+  // Add our custom JavaScript file.
   drupal_add_js($path . '/js/autofill.js');
 
-  //Get the path for the folder created in the libraries folder
+  // Get the path for the folder created in the libraries folder.
   $name = 'autofill';
   if ($path = libraries_get_path($name)) {
-  //Add  the AutoFill plug-in file.
-  //This is the path to the third party file that I used to create the autofill functionality
+  // Add  the AutoFill plug-in file.
+  // Path to third party file.
 	drupal_add_js($path . '/jquery.autofill.js');
   }
-  
-  $fields = variable_get('autofill_id_field_combos', array());  
+
+  $fields = variable_get('autofill_id_field_combos', array());
   if ( empty($fields) ) {
     // get fields
     $fields_pre = array(array('id' => '#edit-info', 'value' => 'eg. Add title here', 'pre' => 'Hallo world'));
-    variable_set('autofill_id_field_combos', $fields_pre );
+    variable_set( 'autofill_id_field_combos', $fields_pre );
   }
 }
 
 /**
- * Implementation of hook_perm.
+ * Implements hook_perm.
  */
 function autofill_perm() {
   return array('administer autofill');
 }
 
 /**
- * Implementation of hook_menu().
+ * Implements hook_menu().
  */
 function autofill_menu() {
   $items = array();
@@ -61,7 +60,7 @@ function autofill_menu() {
     'description' => 'Add id and values to Autofill.',
     'page callback' => 'autofill_js',
     'type' => MENU_CALLBACK,
-    'access arguments' => array(true),
+    'access arguments' => array(TRUE),
   );
 
   $items['admin/settings/autofill'] = array(
@@ -76,7 +75,7 @@ function autofill_menu() {
 }
 
 /**
- * Implementation of hook_form().
+ * Implements hook_form().
  */
 
 function autofill_js() {
@@ -86,7 +85,7 @@ function autofill_js() {
   $active_color = check_plain(variable_get('autofill_colour_active', '#333'));
   $fields = variable_get('autofill_id_field_combos', array());
   foreach ($fields as $delta => $field) {
-    $output .= "\n".'$("' . check_plain($field['id']) . '").autofill( {
+    $output .= "\n" . '$("' . check_plain($field['id']) . '").autofill( {
       value: "' . check_plain($field['value']) . '",
       prePopulate: "' . check_plain($field['pre']) . '",
       defaultTextColor: "' . $default_color . '",

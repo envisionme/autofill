@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_uninstall().
+ * Implements hook_uninstall().
  */
 function autofill_uninstall() {
   variable_del('autofill_colour_default');
