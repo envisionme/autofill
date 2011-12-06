@@ -81,14 +81,14 @@ function autofill_settings_form_validate($form, &$form_state) {
   $fields = $form_state['values']['fields'];
   if (!empty($fields)) {
     foreach ($fields as $delta => $field) {
-    // Check if ID field uses the correct CSS ID or class identifier.
-    if (!empty($fields[$delta]['id']) && $fields[$delta]['id'][0] != '#' && $fields[$delta]['id'][0] != '.') {
+      // Check if ID field uses the correct CSS ID or class identifier.
+      if (!empty($fields[$delta]['id']) && $fields[$delta]['id'][0] != '#' && $fields[$delta]['id'][0] != '.') {
       form_error($form, t("%field-id doesn\'t contain a CSS class or ID identifier (e.g. <em>#specific</em> for <em>id="specific"</em> and <em>.general</em> for <em>class="general"</em>).", array('%field-id' => $fields[$delta]['id'])));
-    }
-    // Check if either value or pre populate value is specified.
-    if (!empty($fields[$delta]['id']) && empty($fields[$delta]['value']) && empty($fields[$delta]['pre'])) {
-      form_error($form, t('%field-id field must contain either a <em>Empty value</em> or <em>Pre-populate value</em>.', array('%field-id' => $fields[$delta]['id'])));
-     }
+      }
+      // Check if either value or pre populate value is specified.
+      if (!empty($fields[$delta]['id']) && empty($fields[$delta]['value']) && empty($fields[$delta]['pre'])) {
+         form_error($form, t('%field-id field must contain either a <em>Empty value</em> or <em>Pre-populate value</em>.', array('%field-id' => $fields[$delta]['id'])));
+      }
     }
   }
 }
