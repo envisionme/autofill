@@ -1,5 +1,6 @@
 <?php
-/** @file
+/**
+ * @file
  * Main module file for the autofill module for Nojoshmo
  */
 
@@ -37,7 +38,7 @@ function autofill_init() {
   if (empty($fields)) {
     // Get fields.
     $fields_pre = array(array('id' => '#edit-info', 'value' => 'eg. Add title here', 'pre' => 'Hallo world'));
-    variable_set( 'autofill_id_field_combos', $fields_pre );
+    variable_set('autofill_id_field_combos', $fields_pre);
   }
 }
 
@@ -77,7 +78,6 @@ function autofill_menu() {
 /**
  * Implements hook_form().
  */
-
 function autofill_js() {
   $output = '';
   $output .= 'Drupal.behaviors.autofill = function(context){ ';
