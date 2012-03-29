@@ -39,7 +39,7 @@ Autofill is depended on the libraries module.
 
 You'll also need to download a third party javascript file created
 by Mmangino jQuery-AutoFill using git ect.
-https://github.com/mmangino/jQuery-AutoFill.git
+https://github.com/mmangino/jQuery-AutoFill
 
 Installation:
 
