@@ -1,9 +1,12 @@
-.autofill-row .form-item {
-  width: 250px;
-	float: left;
-	margin: 10px;
-}
-
 .autofill-row {
- overflow:auto;
+  overflow:auto;
+  clear: both;
+}
+.autofill-row .form-item {
+  width: 30%;
+  float: left;
+  margin: 1em 1em 1em 0;
+}
+.autofill-row .form-item input {
+  width: 100%;
 }

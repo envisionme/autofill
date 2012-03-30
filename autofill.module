@@ -7,7 +7,6 @@
 /**
  * Implements hook_help().
  */
-
 function autofill_help() {
   if ($path == 'admin/help#autofill') {
     return t('Provide autocompletion to Drupal fields');
@@ -20,7 +19,7 @@ function autofill_help() {
 function autofill_init() {
   // Add jQuery Autofill library
   if ($path = libraries_get_path('jquery-autofill')) {
-    drupal_add_js($path . '/jquery.autofill.js');
+    drupal_add_js($path . '/jquery.autofill.min.js');
   }
 
   // Include user generated conditions for Autofill
@@ -76,7 +75,7 @@ function autofill_menu() {
 }
 
 /**
- * Implements hook_form().
+ * Generate custom Autofill JS file.
  */
 function autofill_js() {
   $output = '';

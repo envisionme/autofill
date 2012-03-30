@@ -118,7 +118,7 @@ function autofill_settings_form_submit($form, &$form_state) {
 }
 
 /**
- * Autofill combo boxes for admin settings form
+ * Autofill combo boxes for admin settings form.
  */
 function _autofill_textfield_combo($delta, $id, $value, $pre) {
   $form = array(
