@@ -6,7 +6,8 @@
 
 /**
  * Implements hook_help().
- // */
+ */
+
 function autofill_help() {
   if ($path == 'admin/help#autofill') {
     return t('Provide autocompletion to Drupal fields');
@@ -17,22 +18,15 @@ function autofill_help() {
  * Implements hook_init().
  */
 function autofill_init() {
-  global $user;
-  // The path to the mysite module.
-  $path = drupal_get_path('module', 'autofill');
-  $path_lab = drupal_get_path('module', 'libraries');
-
-  // Add our custom JavaScript file.
-  drupal_add_js($path . '/js/autofill.js');
-
-  // Get the path for the folder created in the libraries folder.
-  $name = 'autofill';
-  if ($path = libraries_get_path($name)) {
-    // Add  the AutoFill plug-in file.
-    // Path to third party file.
+	// Add jQuery Autofill library
+	if ($path = libraries_get_path('autofill')) {
     drupal_add_js($path . '/jquery.autofill.js');
   }
 
+	// Include user generated conditions for Autofill from admin/settings/autofill
+  $path = drupal_get_path('module', 'autofill');
+  drupal_add_js($path . '/js/autofill.js');
+	
   $fields = variable_get('autofill_id_field_combos', array());
   if (empty($fields)) {
     // Get fields.

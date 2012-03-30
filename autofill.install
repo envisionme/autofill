@@ -12,3 +12,27 @@ function autofill_uninstall() {
   variable_del('autofill_colour_active');
   variable_del('autofill_id_field_combos');
 }
+
+/**
+ * Implementation of hook_requirements().
+ */
+function autofill_requirements($phase) {
+  $requirements = array();
+
+  if ($phase == 'runtime') {
+    $path = libraries_get_path('autofill');
+    if (!file_exists($path . '/jquery.autofill.min.js')) {
+      $requirements['autofill'] = array(
+        'title' => t('Autofill'),
+        'severity' => REQUIREMENT_ERROR,
+        'value' => 'Not found',
+        'description' => t('The <a href="@jquery-autofill">jQuery autofill</a> plugin is missing. Download it to your <em>sites/all/libraries</em> directory.', array(
+          '@jquery-autofill' => 'https://github.com/mmangino/jquery-autofill.git',
+          '@download' => 'https://github.com/mmangino/jquery-autofill.git',
+        )),
+      );
+    }
+  }
+
+  return $requirements;
+}
