@@ -4,12 +4,12 @@ This is a simple module to allow the admin user to turn any textfield, textarea
 into a simple but very effective autofill field to explain the users how to
 fill in the fields. And as the user clicks in the textfield, textarea,
 then the help text will simply disappear and allow the user to fill in the
-information as described. In laymen's term this module enables admin user to
+information as described. In layman's term this module enables admin user to
 pre-populate a textfield, and textarea with values to describe how users
 should fill in the form according to the way that the admin users would like
 it to be filled in. eg, link text field: you could add -> http://
 
-The admin user wil be able to use color to describe the default value and
+The admin user will be able to use color to describe the default value and
 prepopulate value color, for better assistance to the user who has to fill in
 the form.
 Admin user will be enabled to fill in the setting page form
@@ -18,14 +18,15 @@ tool like Firebug etc. to access the source code and then you'll be able to
 copy the textfield/textarea class or ID and paste it into the field that
 says ID.
 
-But if the admin user don't want to use this method there is a sample.js file
-that could be saved to anything that admin user would like.
+But if the admin user don't want to use this method there is a sample.autofill.js file
+that could be saved to anything that admin user would like. Please have a look at 
+the code below.
 
-Call the plugin like so:
+Call the Plugin like so:
 Drupal.behaviors.autofill = function(context) {
   $("#edit-field-test-0-value").autofill( {
-    value: "Hallo world",
-    prePopulate: "Hallo Piet",
+    value: "Hallo who?",
+    prePopulate: "Hallo world",
     defaultTextColor: "#666666",
     activeTextColor: "#000000",
   }
@@ -38,23 +39,24 @@ api http://drupal.org/project/libraries
 Autofill is depended on the libraries module.
 
 You'll also need to download a third party javascript file created
-by Mmangino jQuery-AutoFill using git ect.
-https://github.com/mmangino/jQuery-AutoFill
+by Joemsak jQuery-AutoFill using git ect.
+git@github.com:rcb-ferreira/jquery-autofill.git
 
 Installation:
 
 1.Upload the Autofill module in this location sites/all/module/.
 2.Enable the module, please make sure the libraries module is also enabled.
-3.Create a libraries folder on the sites/all directory in the libraries folder
-create an autofill folder and add the jquery.autofill.js in the autofill
-folder, it should look like this sites/all/libraries/autofill/jquery.autofill.js
-4.Go to Admin > Settings > Autofill to access the autofill settings page
+3.Create a libraries folder in the sites/all directory in the libraries folder
+paste or clone the jquery-autofill folder from git in the libraries folder, it should look like this 
+sites/all/libraries/jquery-autofill.
+4.Enable the autofill module.
+4.Go to Admin > Settings > Autofill to access the Autofill settings page.
 
 Instruction:
 
 On the Autofill page you'll see the following fields:
 Default Text color:
-Admin user wil be able to choose any color to describe the default text better.
+Admin user will be able to choose any color to describe the default text better.
 This text will disappear when user clicks in field so it's a good idea to use
 bright colors to describe what you would like the user to enter.
 
@@ -72,4 +74,4 @@ eg. user http:// then user will be able to add the www.site.com etc.
 
 Sponsors:
 This module was sponsored by NoJoShmo.com and is maintained by Rui Ferreira.
-This module is based on the work done by mmangino jQuery-AutoFill
+This module is based on the work done by Joemsak jQuery-AutoFill

@@ -18,15 +18,22 @@ function autofill_help() {
  * Implements hook_init().
  */
 function autofill_init() {
-	// Add jQuery Autofill library
-	if ($path = libraries_get_path('autofill')) {
+  // Add jQuery Autofill library
+  if ($path = libraries_get_path('jquery-autofill')) {
     drupal_add_js($path . '/jquery.autofill.js');
   }
 
-	// Include user generated conditions for Autofill from admin/settings/autofill
-  $path = drupal_get_path('module', 'autofill');
-  drupal_add_js($path . '/js/autofill.js');
-	
+  // Include user generated conditions for Autofill
+  $path = 'sites/default/files';
+  if (file_exists($path . '/autofill.js')) {
+    // Include user generated conditions in sites/all/default/files/autofill.js
+    drupal_add_js($path . '/autofill.js');
+  } else {
+    // Include user generated conditions from admin/settings/autofill
+    $path = drupal_get_path('module', 'autofill');
+    drupal_add_js($path . '/js/autofill.js');
+  }
+  
   $fields = variable_get('autofill_id_field_combos', array());
   if (empty($fields)) {
     // Get fields.

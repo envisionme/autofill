@@ -20,7 +20,7 @@ function autofill_requirements($phase) {
   $requirements = array();
 
   if ($phase == 'runtime') {
-    $path = libraries_get_path('autofill');
+    $path = libraries_get_path('jquery-autofill');
     if (!file_exists($path . '/jquery.autofill.min.js')) {
       $requirements['autofill'] = array(
         'title' => t('Autofill'),

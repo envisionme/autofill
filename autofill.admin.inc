@@ -10,11 +10,19 @@
  * Implementation of Autofill settings form.
  */
 function autofill_form() {
+  $path = 'sites/default/files';
+  if (file_exists($path . '/autofill.js')) {
+    drupal_set_message(t('Custom Autofill config file at %path. Please remove this file to use the system generated version.', array(
+      '%path' => 'sites/default/files/autofill.js',
+    )), 'error');
+    return $form;
+  }
+  
+  // Add Autofill form CSS
   $path = drupal_get_path('module', 'autofill');
   drupal_add_css($path . '/autofill.css');
 
   $form = array();
-
   $form['autofill_colour_default'] = array(
     '#type' => 'textfield',
     '#title' => t('Default Text Color'),
