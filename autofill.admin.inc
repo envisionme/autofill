@@ -68,13 +68,13 @@ function autofill_settings_form_validate($form, &$form_state) {
   // Validate default text color field.
   if (!empty($form_state['values']['autofill_colour_default'])) {
     if (!preg_match('/^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/', $form_state['values']['autofill_colour_default'])) {
-      form_error($form, t('Text color must be a hexadecimal color value like %color.', array('%color' => '#ccc')));
+      form_error($form, t('%colour-default Text color must be a hexadecimal color value like %color.', array('%color' => '#ccc', '%colour-default' =>$form_state['values']['autofill_colour_default'])));
     }
   }
   // Validate text color field.
   if (!empty($form_state['values']['autofill_colour_active'])) {
     if (!preg_match('/^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/', $form_state['values']['autofill_colour_active'])) {
-      form_error($form, t('Text color must be a hexadecimal color value like %color.', array('%color' => '#333')));
+      form_error($form, t('%colour-active Text color must be a hexadecimal color value like %color.', array('%color' => '#333', '%colour-active' =>$form_state['values']['autofill_colour_active'])));
     }
   }
   // Validate ID field.

@@ -1,14 +1,9 @@
 .autofill-row .form-item {
-  width: 300px;
+  width: 250px;
 	float: left;
-	margin: 0px, 10px, 0px, 0px;
+	margin: 10px;
 }
 
 .autofill-row {
  overflow:auto;
-}
-
-.field_spacing {
-  border-style:  inset;
-  width: 250px;
 }
