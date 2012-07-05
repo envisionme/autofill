@@ -7,7 +7,7 @@
 /**
  * Implements hook_help().
  */
-function autofill_help() {
+function autofill_help($path, $arg) {
   if ($path == 'admin/help#autofill') {
     return t('Provide autocompletion to Drupal fields');
   }
@@ -32,7 +32,7 @@ function autofill_init() {
     $path = drupal_get_path('module', 'autofill');
     drupal_add_js($path . '/js/autofill.js');
   }
-  
+
   $fields = variable_get('autofill_id_field_combos', array());
   if (empty($fields)) {
     // Get fields.
