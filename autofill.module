@@ -60,7 +60,7 @@ function autofill_menu() {
     'description' => 'Add id and values to Autofill.',
     'page callback' => 'autofill_js',
     'type' => MENU_CALLBACK,
-    'access arguments' => array(TRUE),
+    'access arguments' => array('access content'),
   );
 
   $items['admin/settings/autofill'] = array(
